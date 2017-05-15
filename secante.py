@@ -1,5 +1,6 @@
-class NaoEncontrado(Exception):
-    pass
+#!/usr/bin/python3
+
+from erros import NaoConverge
 
 def raiz(n, x0, func, tol):
     delta = 0.001
@@ -12,8 +13,9 @@ def raiz(n, x0, func, tol):
             return valores[i+1]
         else:
             y0 = y
-    raise NaoEncontrado
+    raise NaoConverge
 
-from math import cos, sin
-f = lambda x: x**2 - 4*cos(x)
-print("{:.3f}".format(raiz(10, 10, f, 0.0005)))
+if __name__ == "__main__":
+    from math import cos, sin
+    f = lambda x: x**2 - 4*cos(x)
+    print("{:.3f}".format(raiz(10, 10, f, 0.0005)))

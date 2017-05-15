@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 def raiz(inicio, fim, tol, func):
     crescente = 1 if func(fim) > func(inicio) else -1
     while abs(fim - inicio) > tol:
@@ -11,6 +13,7 @@ def raiz(inicio, fim, tol, func):
             inicio = x
     return x
 
-from math import cos
-f = lambda x: x**2 - 4*cos(x)
-print("{:.5f}".format(raiz(0, 10, 0.0001, f)))
+if __name__ == "__main__":
+    from math import cos
+    f = lambda x: x**2 - 4*cos(x)
+    print("{:.5f}".format(raiz(0, 10, 0.0001, f)))

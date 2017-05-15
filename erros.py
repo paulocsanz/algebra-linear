@@ -1,0 +1,2 @@
+class NaoConverge(Exception):
+    pass
