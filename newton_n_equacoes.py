@@ -3,9 +3,7 @@
 from math import sqrt
 from numpy import matrix
 from numpy.linalg import inv
-
-class NaoConverge(Exception):
-    pass
+from erros import NaoConverge
 
 def multiplicar_escalar(A, escalar):
     C = [[i for i in A] for j in A[0]]
@@ -15,7 +13,7 @@ def multiplicar_escalar(A, escalar):
     return C
 
 def solucao_sistema_equacoes_newton(x0, n_iteracoes, J, F, tol):
-    mod = lambda x: sqrt(sum(map(lambda i: i*i, x0)))
+    mod = lambda x: sqrt(sum(map(lambda i: i*i, x)))
     x = x0
     for i in range(n_iteracoes):
         x0 = x
@@ -31,6 +29,7 @@ def solucao_sistema_equacoes_newton(x0, n_iteracoes, J, F, tol):
             m0 = matrix(x0)
 
         x = (m0 + delta_x).tolist()
+        delta_x = delta_x.transpose().tolist()[0]
 
         if m0.tolist() != x0:
             x = [i[0] for i in x] 
@@ -40,4 +39,4 @@ def solucao_sistema_equacoes_newton(x0, n_iteracoes, J, F, tol):
 
 F = lambda x: [x[0] + 2 * x[1] - 2, x[0]*x[0] + 4 * x[1]*x[1] - 4]
 J = lambda x: [[1, 2], [2 * x[0], 8 * x[1]]]
-print(solucao_sistema_equacoes_newton([2, 3], 100, J, F, 1/10000))
+print(solucao_sistema_equacoes_newton([2, 3], 100, J, F, 1/1000))
