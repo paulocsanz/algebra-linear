@@ -13,7 +13,7 @@ def integracao_polinomial(func, a, b, N):
     vandermonde = [[x[i] ** j for i in range(N)] for j in range(N)]
     y = [[(b ** j - a ** j)/j] for j in range(1, N+1)]
     w = list((inv(vandermonde) * matrix(y)).flat)
-    return sum([w[i] * f(x[i]) for i in range(N)])
+    return sum([w[i] * func(x[i]) for i in range(N)])
 
 if __name__ == "__main__":
     from math import e
