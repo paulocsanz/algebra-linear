@@ -3,9 +3,13 @@ from math import e, pi, sqrt
 
 print("Questão 2:")
 f = lambda x: 1/sqrt(2 * pi) * e ** -(x**2/2)
+print("I1)")
 print("Integração polinomial:", integracao_polinomial(f, 0, 1, 10))
+print("Quadratura de Gauss:", quadratura_gauss(0, 1, 10, f))
 
-print("")
+print("I2)")
+print("Integração polinomial:", integracao_polinomial(f, 0, 5, 10))
+
 
 print("Questão 3:")
 
