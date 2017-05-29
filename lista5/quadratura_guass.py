@@ -22,7 +22,8 @@ zi = [[0],
       [0, -0.8360311073266358, 0.8360311073266358, -0.9681602395076261, 0.9681602395076261, -0.3242534234038089, 0.3242534234038089, -0.6133714327005904, 0.6133714327005904],
       [-0.1488743389816312, 0.1488743389816312, -0.4333953941292472, 0.4333953941292472, -0.6794095682990244, 0.6794095682990244, -0.8650633666889845, 0.8650633666889845, -0.9739065285171717, 0.9739065285171717]]
 
-def QuadraturaGauss (a, b, n, X, F):
+def QuadraturaGauss (a, b, n, F):
+    X = lambda z, a, b, L: 1/2 * (a + b + z*L)
     L = b - a
 
     xi = [X(zi[n-1][i], a, b, L) for i in range(0,n)]   # gera os pontos não normalizados, a partir de zi
@@ -32,7 +33,5 @@ def QuadraturaGauss (a, b, n, X, F):
 
 
 if __name__ == "__main__":
-    X = lambda z, a, b, L: 1/2 * (a + b + z*L)
     F = lambda x: 2 + x + 2*x**2
-
-    QuadraturaGauss(1, 3, 2, X, F)
+    print(QuadraturaGauss(1, 3, 2, F))
