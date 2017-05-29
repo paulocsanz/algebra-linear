@@ -80,7 +80,6 @@ J = 3 #jacobiana de partida ??
 #    print("2) Método de Broyden não converge")
 
 print("\nQuestão 4:")
-theta1, theta2 = 0, 3
 F = lambda x: [[2 * x[1]*x[1] + x[0]*x[0] + 6 * x[2]*x[2] - 1],
                [8 * x[1]**3 + 6 * x[1] * x[0]*x[0] + 36 * x[1] * x[0] * x[2] + 108 * x[1] * x[2]*x[2] - theta1],
                [60 * x[1]**4 + 60 * x[1]*x[1] * x[0]*x[0] + 576 * x[1]*x[1] * x[0] * x[2] + 2232 * x[1]*x[1] * x[2]*x[2] + 252 * x[2]*x[2] * x[0]*x[0] + 1296 * x[2]**3 * x[0] + 3348 * x[2]**4 + 24 * x[0]**3 * x[2] + 3 * x[0] - theta2]]
@@ -90,7 +89,24 @@ J = lambda x: [[2 * x[0], 4 * x[1], 2 * x[2]],
                [120 * x[0] + 576 + 504 * x[0] + 1296 + 3348 * 3 * x[0]*x[0], 240 * x[1]**3 + 120 * x[1] + 1154 * x[1] + 4464 * x[1], 576 + 4464 * x[2] + 504 * x[2] + 1296 * 3 * x[2]*x[2] + 3348 * 4 * x[2]**3 + 24]]
 
 print("a)")
+theta1, theta2 = 0, 3
+try:
+    print("Newton:", SolucaoEqNLinearNewton([0, 1, 2], 0.00001, 1000, J, F))
+except NaoConverge:
+    print("Método de Newton não converge")
+
+print("b)")
+theta1, theta2 = 0.75, 6.5
 try:
     print("Newton:", SolucaoEqNLinearNewton([0, 0.01, 0.02], 0.00001, 1000, J, F))
 except NaoConverge:
     print("Método de Newton não converge")
+
+print("c)")
+theta1, theta2 = 0, 11.667
+try:
+    print("Newton:", SolucaoEqNLinearNewton([0, 0.01, 0.02], 0.00001, 1000, J, F))
+except NaoConverge:
+    print("Método de Newton não converge")
+
+print("\nQuestão 5:")
