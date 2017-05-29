@@ -18,6 +18,7 @@ def AjusteNLinear (xin, yin, bi, tol, niter, J, F):
         tolerancia = norm(deltab) / norm(bold)
         bold = list(bold.flat)
         bold = [[bold[0]],[bold[1]]]
+        niter -= 1
 
     if niter == -1:
         raise NaoConverge
