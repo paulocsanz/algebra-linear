@@ -54,6 +54,14 @@ taylor = TaylorEDO2 (0, 0, 0, 100, 0.1, f)
 plot(runge_kutta, "Exercício 2: Método Runge-Kutta")
 plot(taylor, "Exercício 2: Método de Taylor", color='red')
 
+print("\nExercício 2")
+print("    index    Runge-Kutta    Taylor")
+for i in range(len(runge_kutta)):
+    print("    {:3}    -   {:+.4f}   - {:+.4f}".format(
+          i,
+          runge_kutta[i],
+          taylor[i]))
+
 f = lambda x, dx, t: -9.807-1*dx*abs(dx)
 runge_kutta = RungeKuttaNystromEDO2(0, 0, 0, 20, 0.1, f)
 taylor = TaylorEDO2(0, 0, 0, 20, 0.1, f)
@@ -61,6 +69,15 @@ taylor = TaylorEDO2(0, 0, 0, 20, 0.1, f)
 plot(runge_kutta, "Exercício 3: Método Runge-Kutta")
 plot(taylor, "Exercício 3: Método de Taylor", color='red')
 
+print("\nExercício 3")
+print("    index    Runge-Kutta    Taylor")
+for i in range(len(runge_kutta)):
+    print("     {:2}   -   {}{:+.4f}   - {}{:+.4f}".format(
+          i,
+          " " if abs(runge_kutta[i]) < 10 else "",
+          runge_kutta[i],
+          " " if abs(taylor[i]) < 10 else "",
+          taylor[i]))
 # Ultima coisa no script (bloqueia até os gráficos fecharem)
 try:
     plt.show()
