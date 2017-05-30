@@ -5,7 +5,7 @@ def integracao_numerica(func, a, b, N):
         x = a
         a += delta_x
         next_x = a
-        A += (f(next_x) + f(x)) * delta_x / 2
+        A += (func(next_x) + func(x)) * delta_x / 2
     return A
 
 if __name__ == "__main__":
