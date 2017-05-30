@@ -8,6 +8,7 @@ from secante import raiz as raiz_secante
 from interpolacao_inversa import raiz as raiz_interpolacao
 from eq_n_linear_newton import SolucaoEqNLinearNewton
 from eq_n_linear_broyden import SolucaoEqNLinearBroyden
+from ajuste_n_linear import AjusteNLinear
 
 print("Questao 1:")
 g = 9.806
@@ -112,3 +113,10 @@ except NaoConverge:
     print("    Método de Newton nao converge")
 
 print("\nQuestao 5:")
+F = lambda x,b,y: [b[0][0] + b[1][0] * x**b[2][0] - y]
+J = lambda x,b: [1, x**b[2][0], b[1][0] * x**b[2][0] * log(x)]
+try:
+    resp5 = AjusteNLinear ([1,2,3], [1,2,9], [[1], [1], [2]], 0.0001, 100, J, F)
+    print("Ajuste Nao Linear:\n","\nb1 = ", resp5[0][0],"\nb2 = ", resp5[1][0],"\nb3 = ", resp5[2][0])
+except NaoConverge:
+    print("Ajuste nao converge")
