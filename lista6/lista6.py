@@ -36,13 +36,10 @@ RungeKutta4aEDO(1,0,2,0.1,f)
 print("\nReferencia")
 i=0
 while(i<=2):
-	ref = 1/(1+i**2)
-	print(i," - ",ref)
-	i=round(0.1+i,3)
+    ref = 1/(1+i**2)
+    print("{:.1f} - {:.9f}".format(i, ref))
+    i=round(0.1+i,3)
 
-
-
-print("\n\nExercício 2")
 c = 0.2
 k = 1
 w = 0.5
@@ -52,8 +49,6 @@ taylor = TaylorEDO2 (0, 0, 0, 100, 0.1, f)
 
 plot(runge_kutta, "Exercício 2: Método Runge-Kutta")
 plot(taylor, "Exercício 2: Método de Taylor", color='red')
-
-print("\n\nExercício 3")
 
 f = lambda x, dx, t: -9.807-1*dx*abs(dx)
 runge_kutta = RungeKuttaNystromEDO2(0, 0, 0, 20, 0.1, f)
