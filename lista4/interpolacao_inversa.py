@@ -6,13 +6,13 @@ def raiz(func, x1, x2, x3, n_iteracoes, tol):
     x = [x1, x2, x3]
     for i in range(n_iteracoes):
         y = tuple(func(v) for v in x)
-        x += [(y[1] * y[2] * x[0]) / ((y[0] - y[1]) * (y[0] - y[2])) +
-              (y[0] * y[2] * x[1]) / ((y[1] - y[0]) * (y[1] - y[2])) +
-              (y[0] * y[1] * x[2]) / ((y[2] - y[0]) * (y[2] - y[1]))]
-        if (abs(x[3] - x[2]) < tol):
-            return x[3]
+        x = [(y[1] * y[2] * x[0]) / ((y[0] - y[1]) * (y[0] - y[2])) +
+             (y[0] * y[2] * x[1]) / ((y[1] - y[0]) * (y[1] - y[2])) +
+             (y[0] * y[1] * x[2]) / ((y[2] - y[0]) * (y[2] - y[1]))] + x
+        if (abs(x[0] - x[2]) < tol):
+            return x[0]
         else:
-            x.pop(2)
+            x.pop(3)
             x.sort()
     raise NaoConverge
 

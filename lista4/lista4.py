@@ -31,10 +31,10 @@ try:
 except NaoConverge:
     print("3) Raiz por Newton secante nao converge")
 
-#try:
-#    print("4) Raiz por interpolaçao inversa:\n", raiz_interpolacao(f, 0, 1, 2, 1000, 0.0001))
-#except NaoConverge:
-#    print("4) Raiz por interpolacao inversa nao converge")
+try:
+    print("4) Raiz por interpolaçao inversa:\n", raiz_interpolacao(f, 0, 10, 20, 1000, 0.0001))
+except NaoConverge:
+    print("4) Raiz por interpolacao inversa nao converge")
 
 print("\nQuestao 2:")
 f = lambda x: 4 * cos(x) - e**(2*x)
@@ -93,7 +93,7 @@ J = lambda x: [[2 * x[0], 4 * x[1], 2 * x[2]],
 print("a)")
 theta1, theta2 = 0, 3
 try:
-    print("Newton:", SolucaoEqNLinearNewton([0, 1, 2], 0.00001, 100, J, F))
+    print("Newton:", SolucaoEqNLinearNewton([0, 0.01, 0.02], 0.00001, 1000, J, F))
 except NaoConverge:
     print("Método de Newton nao converge")
 

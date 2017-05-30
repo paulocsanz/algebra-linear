@@ -9,8 +9,6 @@ def SolucaoEqNLinearNewton(xin, tol, niter, J, F):
 
     while (tolerancia > tol and niter != -1):
         f = matrix(F(xold))
-        if f.size == 1:
-            f = f.transpose()
         j = J(xold)
         jinv = inv(j)
         deltax = -1 * jinv * f

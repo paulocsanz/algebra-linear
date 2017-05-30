@@ -33,4 +33,4 @@ def QuadraturaGauss (a, b, n, F):
 
 if __name__ == "__main__":
     F = lambda x: 2 + x + 2*x**2
-    print(QuadraturaGauss(1, 3, 2, F))
+    print(QuadraturaGauss(1, 3, 3, F))
