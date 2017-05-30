@@ -17,7 +17,8 @@ def AjusteNLinear (xin, yin, bi, tol, niter, J, F):
         bold = bold + deltab 
         tolerancia = norm(deltab) / norm(bold)
         bold = list(bold.flat)
-        bold = [[bold[0]],[bold[1]]]
+        for i in range (0, len(bold)):
+            bold[i] = [bold[i]]
         niter -= 1
 
     if niter == -1:
