@@ -19,15 +19,14 @@ E = 0.05
 sn = lambda x: 2
 rao = lambda x: 1/sqrt((1 - (x/wn)**2)**2 + (2 * E * x/wn)**2)
 f = lambda x: rao(x)**2 * sn(x)
-print("Integração polinomial:")
-print("    m0:", integracao_polinomial(f, 0, 10, 10))
+print("    Integração polinomial:")
+print("        m0:", integracao_polinomial(f, 0, 10, 10))
 g = lambda x: f(x) * x**2
-print("    m2:", integracao_polinomial(g, 0, 10, 10))
+print("        m2:", integracao_polinomial(g, 0, 10, 10))
 
-print("Quadratura de Gauss:")
-print("    m0:", quadratura_gauss(0, 10, 10, f))
-g = lambda x: f(x) * x**2
-print("    m2:", quadratura_gauss(0, 10, 10, g))
+print("    Quadratura de Gauss:")
+print("        m0:", quadratura_gauss(0, 10, 10, f))
+print("        m2:", quadratura_gauss(0, 10, 10, g))
 
 print("\nQuestão 4:")
 hs = 3
