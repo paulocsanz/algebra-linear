@@ -24,20 +24,24 @@ def plot(array, title, color='blue'):
 
 print("Exercício 1")
 f = lambda x, t: -2*t*(x**2)
-print("Euler")
-EulerEDO(1,0,2,0.005,f)
+print("    Euler")
+for told, xold in EulerEDO(1, 0, 2, 0.005, f):
+    print("        {:.3f} - {:.9f}".format(told, xold))
 
-print("\nRK2")
-RungeKutta2aEDO(1,0,2,0.05,f)
+print("\n    RK2")
 
-print("\nRK4")
-RungeKutta4aEDO(1,0,2,0.1,f)
+for told, xold in RungeKutta2aEDO(1,0,2,0.05,f):
+    print("        {:.1f} - {:.9f}".format(told, xold))
 
-print("\nReferencia")
+print("\n    RK4")
+for told, xold in RungeKutta4aEDO(1,0,2,0.1,f):
+    print("        {:.1f} - {:.9f}".format(told, xold))
+
+print("\n    Referencia")
 i=0
 while(i<=2):
     ref = 1/(1+i**2)
-    print("{:.1f} - {:.9f}".format(i, ref))
+    print("        {:.1f} - {:.9f}".format(i, ref))
     i=round(0.1+i,3)
 
 c = 0.2
@@ -58,4 +62,7 @@ plot(runge_kutta, "Exercício 3: Método Runge-Kutta")
 plot(taylor, "Exercício 3: Método de Taylor", color='red')
 
 # Ultima coisa no script (bloqueia até os gráficos fecharem)
-plt.show()
+try:
+    plt.show()
+except KeyboardInterrupt:
+    pass
