@@ -74,10 +74,11 @@ print("    index    Runge-Kutta    Taylor")
 for i in range(len(runge_kutta)):
     print("     {:2}   -   {}{:+.4f}   - {}{:+.4f}".format(
           i,
-          " " if abs(runge_kutta[i]) < 10 else "",
+          " " * (abs(runge_kutta[i]) < 10),
           runge_kutta[i],
-          " " if abs(taylor[i]) < 10 else "",
+          " " * (abs(taylor[i]) < 10),
           taylor[i]))
+
 # Ultima coisa no script (bloqueia até os gráficos fecharem)
 try:
     plt.show()
