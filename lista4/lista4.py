@@ -20,7 +20,7 @@ df = lambda x: g * tanh(x * c)
 print("    1) Raiz por bisseçao:\n    ", raiz_bissecao(0, 1000, 0.0001, f))
 
 try:
-    print("    2) Raiz por Newton original:\n    ", raiz_newton(1000, 5, f, df, 0.0001))
+    print("    2) Raiz por  original:\n    ", raiz_newton(1000, 5, f, df, 0.0001))
 except ZeroDivisionError as ex:
     print("    2) O resultado da derivada da funçao para x = {} é zero, "
           "portanto ocorre uma divisao por zero durante a resoluçao pelo método de Newton.".format(str(ex)))
@@ -87,35 +87,76 @@ except NaoConverge:
    print("    2) Método de Broyden nao converge")
 
 print("\nQuestao 4:")
-F = lambda x: [[2 * x[1]*x[1] + x[0]*x[0] + 6 * x[2]*x[2] - 1],
-               [8 * x[1]**3 + 6 * x[1] * x[0]*x[0] + 36 * x[1] * x[0] * x[2] + 108 * x[1] * x[2]*x[2] - theta1],
-               [60 * x[1]**4 + 60 * x[1]*x[1] * x[0]*x[0] + 576 * x[1]*x[1] * x[0] * x[2] + 2232 * x[1]*x[1] * x[2]*x[2] + 252 * x[2]*x[2] * x[0]*x[0] + 1296 * x[2]**3 * x[0] + 3348 * x[2]**4 + 24 * x[0]**3 * x[2] + 3 * x[0] - theta2]]
+def F(x):
+    l1 = 2*x[1]**2 + x[0]**2 + 6*x[2]**2 - 1
+    l2 = (8*x[1]**3 + 6*x[1]*x[0]**2 + 36*x[1]*x[0]*x[2] +
+          108*x[1]*x[2]**2 - theta1)
+    l3 = (60*x[1]**4 + 60*(x[1]*x[0])**2 + 576*x[1]**2*x[0]*x[2] +
+          2232*(x[1]*x[2])**2 + 252*(x[2]*x[0])**2 + 1296*x[2]**3*x[0] +
+          3348*x[2]**4 + 24*x[0]**3*x[2] + 3*x[0] - theta2)
+    return [l1, l2, l3]
 
-J = lambda x: [[2 * x[0], 4 * x[1], 2 * x[2]],
-               [12 * x[0], 24 * x[1]*x[1] + 6 + 36 + 108, 36 + 216 * x[2]],
-               [120 * x[0] + 576 + 504 * x[0] + 1296 + 3348 * 3 * x[0]*x[0], 240 * x[1]**3 + 120 * x[1] + 1154 * x[1] + 4464 * x[1], 576 + 4464 * x[2] + 504 * x[2] + 1296 * 3 * x[2]*x[2] + 3348 * 4 * x[2]**3 + 24]]
+def J(x):
+    l1 = 2*x[0], 4*x[1], 12*x[2]
+    l2 = (12*x[0]*x[1] + 36*x[1]*x[2],
+          24*x[1]**2 + 6*x[0]**2 + 36*x[0]*x[2] + 108*x[2]**2,
+          36*x[0]*x[1] + 216*x[1]*x[2])
+    l3 = (120*x[0]*x[1]**2 + 576*x[1]**2*x[2] + 504*x[0]*x[2]**2 +
+            1296*x[2]**3 + 72*x[0]**2*x[2] + 3,
+          240*x[1]**3 + 120*x[0]**2*x[1] + 1152*x[0]*x[1]*x[2] +
+            4464*x[1]*x[2]**2,
+          576*x[0]*x[1]**2 + 4464*x[1]**2*x[2] * 504*x[0]**2*x[2] +
+            3888*x[2]**2*x[0] + 13392*x[2]**3 + 24*x[0]**3)
+    return [l1, l2, l3]
 
 print("    a)")
 theta1, theta2 = 0, 3
 try:
-    print("    Newton:", SolucaoEqNLinearNewton([0, 0.01, 0.02], 0.00001, 1000, J, F))
+    print("    1) Newton N equaçoes:")
+    for v in SolucaoEqNLinearNewton([0, 0.01, 0.02], 0.0001, 1000, J, F):
+        print("        {:.4f}".format(v))
 except NaoConverge:
-    print("    Método de Newton nao converge")
-
+    print("    1) Método por Newton para N equaçoes nao converge")
+"""
+try:
+    print("    2) Método de Broyden:")
+    for v in SolucaoEqNLinearBroyden([0, 0.01, 0.02], J, 0.0001, 1000, F):
+        print("        {:.4f}".format(v))
+except NaoConverge:
+   print("    2) Método de Broyden nao converge")
+"""
 print("    b)")
 theta1, theta2 = 0.75, 6.5
 try:
-    print("    Newton:", SolucaoEqNLinearNewton([0, 0.01, 0.02], 0.00001, 1000, J, F))
+    print("    1) Newton N equaçoes:")
+    for v in SolucaoEqNLinearNewton([0, 0.01, 0.02], 0.0001, 1000, J, F):
+        print("        {:.4f}".format(v))
 except NaoConverge:
-    print("    Método de Newton nao converge")
-
+    print("    1) Método por Newton para N equaçoes nao converge")
+"""
+try:
+    print("    2) Método de Broyden:")
+    for v in SolucaoEqNLinearBroyden([0, 0.01, 0.02], J, 0.0001, 1000, F):
+        print("        {:.4f}".format(v))
+except NaoConverge:
+    print("    2) Método de Broyden nao converge")
+"""
 print("    c)")
 theta1, theta2 = 0, 11.667
 try:
-    print("    Newton:", SolucaoEqNLinearNewton([0, 0.01, 0.02], 0.00001, 1000, J, F))
+    print("    1) Newton N equaçoes:")
+    for v in SolucaoEqNLinearNewton([0, 0.01, 0.02], 0.0001, 1000, J, F):
+        print("        {:.4f}".format(v))
 except NaoConverge:
-    print("    Método de Newton nao converge")
-
+    print("    1) Método por Newton para N equaçoes nao converge")
+"""
+try:
+    print("    2) Método de Broyden:")
+    for v in SolucaoEqNLinearBroyden([0, 0.01, 0.02], J, 0.0001, 1000, F):
+        print("        {:.4f}".format(v))
+except NaoConverge:
+   print("    2) Método de Broyden nao converge")
+"""
 print("\nQuestao 5:")
 F = lambda x,b,y: [b[0][0] + b[1][0] * x**b[2][0] - y]
 J = lambda x,b: [1, x**b[2][0], b[1][0] * x**b[2][0] * log(x)]

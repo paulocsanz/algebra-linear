@@ -8,7 +8,10 @@ def SolucaoEqNLinearNewton(xin, tol, niter, J, F):
     tolerancia = 1
 
     while (tolerancia > tol and niter != -1):
-        f = matrix(F(xold))
+        _f = F(xold)
+        if type(_f[0]) != list:
+            _f = [[x] for x in _f]
+        f = matrix(_f)
         j = J(xold)
         jinv = inv(j)
         deltax = -1 * jinv * f
