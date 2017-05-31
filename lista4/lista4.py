@@ -57,7 +57,7 @@ except NaoConverge:
     print("    3) Raiz por secante nao converge")
 
 try:
-    print("    4) Raiz por interpolaçao inversa:\n    ", raiz_interpolacao(f, 5, 10, 15, 1000, 0.0001))
+    print("    4) Raiz por interpolaçao inversa:\n    ", raiz_interpolacao(f, 0, 5, 10, 1000, 0.0001))
 except NaoConverge:
     print("    4) Raiz por interpolacao inversa nao converge")
 

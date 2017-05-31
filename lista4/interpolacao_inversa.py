@@ -3,17 +3,28 @@
 from erros import NaoConverge
 
 def raiz(func, x1, x2, x3, n_iteracoes, tol):
-    x = [x1, x2, x3]
+    x = [0, x1, x2, x3]
     for i in range(n_iteracoes):
-        y = tuple(func(v) for v in x)
-        x = [(y[1] * y[2] * x[0]) / ((y[0] - y[1]) * (y[0] - y[2])) +
-             (y[0] * y[2] * x[1]) / ((y[1] - y[0]) * (y[1] - y[2])) +
-             (y[0] * y[1] * x[2]) / ((y[2] - y[0]) * (y[2] - y[1]))] + x
-        if (abs(x[0] - x[2]) < tol):
-            return x[0]
-        else:
-            x.pop(3)
-            x.sort()
+        y = [func(v) for v in x]
+        x = ([x[0]] +
+             [(x[1] * y[2] * y[3] / float((y[1] - y[2]) * (y[1] - y[3]))   +
+               x[2] * y[1] * y[3] / float((y[2] - y[1]) * (y[2] - y[3]))   +
+               x[3] * y[1] * y[2] / float((y[3] - y[1]) * (y[3] - y[2])))] +
+             x[1:])
+        if (abs(x[1] - x[0]) < tol):
+            return x[1]
+
+        x[0] = x[1]
+        x.pop(1)
+
+        max_y = y[0]
+        index = 3
+        for i, v in enumerate(y[1:]):
+            if v > max_y:
+                v = max_y
+                index = i+1
+        x[index] = x[0]
+
     raise NaoConverge
 
 if __name__ == "__main__":
