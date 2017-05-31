@@ -32,5 +32,6 @@ def QuadraturaGauss (a, b, n, F):
     return L/2 * (dot(fi,weights[n-1])) 
 
 if __name__ == "__main__":
-    F = lambda x: 2 + x + 2*x**2
-    print(QuadraturaGauss(0, 10, 10, F))
+    from math import e
+    F = lambda x: e ** (-x ** 2)
+    print(QuadraturaGauss(0, 1, 10, F))
