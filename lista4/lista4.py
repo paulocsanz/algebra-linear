@@ -70,7 +70,9 @@ J = lambda x: [[64 * x[0]**3, 64 * x[1]**3, 4 * x[2]**3],
                [2*x[0], 2*x[1], 2*x[2]],
                [3 * x[0]*x[0], -1, 1]]
 try:
-    print("    1) Newton N equaçoes:", SolucaoEqNLinearNewton([0.5, 1, 2], 0.0001, 1000, J, F))
+    print("    1) Newton N equaçoes:")
+    for v in SolucaoEqNLinearNewton([0.5, 1, 2], 0.0001, 1000, J, F):
+        print("        {:.4f}".format(v))
 except NaoConverge:
     print("    1) Método por Newton para N equaçoes nao converge")
 
@@ -78,7 +80,9 @@ J = [[64, 64, 4],
     [2, 2, 2],
     [3, -1, 1]] #jacobiana de partida
 try:
-   print("    2) Método de Broyden:", SolucaoEqNLinearBroyden([0.5, 1, 2], J, 0.0001, 1000, F))
+    print("    2) Método de Broyden:")
+    for v in SolucaoEqNLinearBroyden([0.5, 1, 2], J, 0.0001, 1000, F):
+        print("        {:.4f}".format(v))
 except NaoConverge:
    print("    2) Método de Broyden nao converge")
 
