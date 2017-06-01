@@ -94,7 +94,7 @@ def F(x):
     l3 = (60*x[1]**4 + 60*(x[1]*x[0])**2 + 576*x[1]**2*x[0]*x[2] +
           2232*(x[1]*x[2])**2 + 252*(x[2]*x[0])**2 + 1296*x[2]**3*x[0] +
           3348*x[2]**4 + 24*x[0]**3*x[2] + 3*x[0] - theta2)
-    return [l1, l2, l3]
+    return [[l1], [l2], [l3]]
 
 def J(x):
     l1 = 2*x[0], 4*x[1], 12*x[2]
@@ -117,15 +117,16 @@ try:
         print("        {:.4f}".format(v))
 except NaoConverge:
     print("    1) Método por Newton para N equaçoes nao converge")
-"""
+
+Jaq = [[2,4,12],[12,8,6],[6,4,8]]
 try:
     print("    2) Método de Broyden:")
-    for v in SolucaoEqNLinearBroyden([0, 0.01, 0.02], J, 0.0001, 1000, F):
+    for v in SolucaoEqNLinearBroyden([0, 0.01, 0.02], Jaq, 0.0001, 10000, F):
         print("        {:.4f}".format(v))
 except NaoConverge:
    print("    2) Método de Broyden nao converge")
-"""
-print("    b)")
+
+print("\n    b)")
 theta1, theta2 = 0.75, 6.5
 try:
     print("    1) Newton N equaçoes:")
@@ -133,14 +134,14 @@ try:
         print("        {:.4f}".format(v))
 except NaoConverge:
     print("    1) Método por Newton para N equaçoes nao converge")
-"""
+
 try:
     print("    2) Método de Broyden:")
-    for v in SolucaoEqNLinearBroyden([0, 0.01, 0.02], J, 0.0001, 1000, F):
+    for v in SolucaoEqNLinearBroyden([0, 0.01, 0.02], Jaq, 0.0001, 1000, F):
         print("        {:.4f}".format(v))
 except NaoConverge:
     print("    2) Método de Broyden nao converge")
-"""
+
 print("    c)")
 theta1, theta2 = 0, 11.667
 try:
@@ -149,14 +150,14 @@ try:
         print("        {:.4f}".format(v))
 except NaoConverge:
     print("    1) Método por Newton para N equaçoes nao converge")
-"""
+
 try:
     print("    2) Método de Broyden:")
-    for v in SolucaoEqNLinearBroyden([0, 0.01, 0.02], J, 0.0001, 1000, F):
+    for v in SolucaoEqNLinearBroyden([0, 0.01, 0.02], Jaq, 0.0001, 1000, F):
         print("        {:.4f}".format(v))
 except NaoConverge:
    print("    2) Método de Broyden nao converge")
-"""
+
 print("\nQuestao 5:")
 F = lambda x,b,y: [b[0][0] + b[1][0] * x**b[2][0] - y]
 J = lambda x,b: [1, x**b[2][0], b[1][0] * x**b[2][0] * log(x)]
