@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from integracao_polinomial import integracao_polinomial
 from quadratura_gauss import QuadraturaGauss as quadratura_gauss
 from math import e, pi, sqrt

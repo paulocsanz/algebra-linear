@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 from math import log, cosh, tanh, sqrt, cos, sin, e
 from erros import NaoConverge

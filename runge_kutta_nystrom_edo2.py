@@ -1,5 +1,6 @@
-from math import log, exp
+#!/usr/bin/env python3
 
+from math import log, exp
 
 def RungeKuttaNystromEDO2 (x0, dx0, t0, tf, h, F):
 	xold = x0
@@ -22,6 +23,6 @@ def RungeKuttaNystromEDO2 (x0, dx0, t0, tf, h, F):
 		told = round(told + h,3)
 	return lista
 
-# ddX = lambda x, dx, t: -9.807-1*dx*abs(dx)
-
-# RungeKuttaNystromEDO2(0, 0, 0, 1, 0.1, ddX)
+if __name__ == "__main__":
+    ddX = lambda x, dx, t: -9.807-1*dx*abs(dx)
+    RungeKuttaNystromEDO2(0, 0, 0, 1, 0.1, ddX)

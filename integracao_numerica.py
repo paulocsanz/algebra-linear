@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 def integracao_numerica(func, a, b, N):
     A = 0
     delta_x = (b - a)/(N - 1)

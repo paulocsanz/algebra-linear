@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from erros import NaoConverge
 from numpy import matrix
 from numpy.linalg import inv

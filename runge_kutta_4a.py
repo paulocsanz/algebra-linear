@@ -1,5 +1,6 @@
-from math import log, exp
+#!/usr/bin/env python3
 
+from math import log, exp
 
 def RungeKutta4aEDO (x0, t0, tf, h, dX):
     xold = x0
@@ -16,5 +17,6 @@ def RungeKutta4aEDO (x0, t0, tf, h, dX):
         told = round(told + h,3)
     return ret
 
-# dX = lambda x, t: t + x
-# RungeKutta4aEDO(0, 0, 1, 0.1, dX)
+if __name__ == "__main__":
+    dX = lambda x, t: t + x
+    RungeKutta4aEDO(0, 0, 1, 0.1, dX)

@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 def raiz(inicio, fim, tol, func):
     crescente = 1 if func(fim) > func(inicio) else -1
